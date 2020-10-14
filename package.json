@@ -1,0 +1,46 @@
+{
+	"name": "vidbase.dev",
+	"version": "0.0.1",
+	"private": true,
+	"description": "A monorepo that holds all of Vidbase's open source projects.",
+	"keywords": [
+		"react",
+		"react.js",
+		"reactjs",
+		"authentication",
+		"authorization",
+		"auth",
+		"unauth",
+		"frontend",
+		"prefers-color-scheme",
+		"prefers-reduced-motion",
+		"prefers-mode",
+		"dark",
+		"light",
+		"video editing",
+		"video"
+	],
+	"homepage": "https://vidbase.dev",
+	"repository": {
+		"type": "git",
+		"url": "https:/github.com/vidbase/vidbase.dev"
+	},
+	"workspaces": [
+		"packages/*"
+	],
+	"prettier": {
+		"trailingComma": "none",
+		"tabWidth": 2,
+		"semi": false,
+		"singleQuote": true,
+		"bracketSpacing": true,
+		"jsxBracketSameLine": true,
+		"useTabs": true
+	},
+	"engines": {
+		"node": ">= 10.14.2"
+	},
+	"devDependencies": {
+		"lerna": "^3.20.2"
+	}
+}

@@ -1,0 +1,38 @@
+{
+	"name": "prefers-mode",
+	"version": "0.0.0",
+	"description": "Detect & listen to preferences for prefers-color-scheme & prefers-reduced-motion.",
+	"keywords": [
+		"prefers-color-scheme",
+		"prefers-reduced-motion",
+		"prefers",
+		"system",
+		"preference",
+		"dark",
+		"mode",
+		"light",
+		"mode",
+		"reduced",
+		"motion",
+		"vestibular",
+		"disorder",
+		"motion",
+		"sickness"
+	],
+	"author": "Van Nguyen <thegoleffect@gmail.com>",
+	"homepage": "https://vidbase.dev/packages/prefers-mode",
+	"license": "MIT",
+	"main": "build/index.js",
+	"types": "build/index.d.ts",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/vidbase/vidbase.dev.git",
+		"directory": "packages/prefers-mode"
+	},
+	"bugs": {
+		"url": "https://github.com/vidbase/vidbase.dev/issues"
+	},
+	"publishConfig": {
+		"access": "public"
+	}
+}
