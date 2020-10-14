@@ -1,10 +1,3 @@
-# `prefers-mode`
-
-> TODO: description
-
-## Usage
-
-```
 import usePrefersMode, { SCHEME_PREFS, MOTION_PREFS } from 'prefers-mode'
 
 const IndexPage = (props) => {
@@ -17,8 +10,5 @@ const IndexPage = (props) => {
 
 	return <div className={cls}>Hello</div>
 }
-```
 
-Please note: This currently requires transpilation. See [example](../../examples/prefers-mode).
-
-Working on a pre-compiled built version of the module.
+export default IndexPage
