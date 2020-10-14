@@ -1,6 +1,6 @@
 {
 	"name": "prefers-mode",
-	"version": "0.0.0",
+	"version": "0.0.1",
 	"description": "Detect & listen to preferences for prefers-color-scheme & prefers-reduced-motion.",
 	"keywords": [
 		"prefers-color-scheme",
