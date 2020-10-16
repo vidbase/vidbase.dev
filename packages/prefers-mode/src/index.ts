@@ -14,8 +14,8 @@ const MOTION_PREFS = {
 
 const usePrefersMode = () => {
 	const [prefs, setPrefs] = useState({
-		colorScheme: 'light',
-		reducedMotion: 'no-preference'
+		colorScheme: SCHEME_PREFS.LIGHT,
+		reducedMotion: MOTION_PREFS.NO_PREFERENCE
 	})
 
 	function handleLightSchemeChange(event) {
