@@ -1,0 +1,45 @@
+:root {
+	--font-size: 17px;
+
+	/* font-families (modified from tailwindcss) */
+	--font-sans: 'SF-Pro Display', system-ui, -apple-system, BlinkMacSystemFont,
+		'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif,
+		'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+	--font-serif: Georgia, Cambria, 'Times New Roman', Times, serif;
+	--font-mono: Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New',
+		monospace;
+
+	/* font-sizes */
+	--text-xs: 0.422rem;
+	--text-sm: 0.563rem;
+	--text-base: 1rem;
+	--text-lg: 1.33rem;
+	--text-xl: 1.77rem;
+	--text-2xl: 2.369rem;
+	--text-3xl: 3.157rem;
+	--text-4xl: 4.209rem;
+	--text-5xl: 5.611rem;
+	--text-6xl: 7.479rem;
+
+	/* line-heights */
+	--leading-xs: 0.47rem;
+	--leading-sm: 0.705rem;
+	--leading-base: 1.176rem;
+	--leading-lg: 1.412rem;
+	--leading-xl: 1.88rem;
+	--leading-2xl: 2.588rem;
+	--leading-3xl: 3.29rem;
+	--leading-4xl: 4.235rem;
+	--leading-5xl: 5.647rem;
+	--leading-6xl: 7.529rem;
+
+	/* box/button/etc heights */
+	--height-sm: var(--leading-xl);
+	--height-base: var(--leading-2xl);
+	--height-lg: var(--leading-3xl);
+	--height-xl: var(--leading-4xl);
+
+	/* paddings */
+	--p-sm: var(--leading-xs);
+	--p-base: var(--leading-sm);
+}

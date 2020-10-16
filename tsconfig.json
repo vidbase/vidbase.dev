@@ -1,12 +1,12 @@
 {
 	"compilerOptions": {
-		"target": "es6",
 		"module": "esnext",
 		"strict": true,
 		"moduleResolution": "node",
 		"lib": ["dom", "dom.iterable", "esnext"],
 
 		// Compilation related
+		"sourceMap": true,
 		"declaration": true,
 		"emitDeclarationOnly": true,
 		"skipLibCheck": true,
@@ -20,13 +20,18 @@
 		"allowJs": true,
 
 		// External Imports like React
-		"jsx": "preserve",
+		"jsx": "react",
 
 		// Styles
 		"forceConsistentCasingInFileNames": true,
-		"noImplicitAny": false,
-		"noImplicitReturns": true
+		"noImplicitAny": true,
+		"noImplicitThis": true,
+		"noImplicitReturns": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+
+		"types": []
 	},
-	"exclude": ["node_modules", "**/__tests__"],
-	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
+	"exclude": ["node_modules", "**/__tests__", "**/dist", "examples"],
+	"include": ["next-env.d.ts", "src", "**/*.ts", "**/*.tsx"]
 }
