@@ -1,10 +1,13 @@
 import React from 'react'
 import dynamic from 'next/dynamic'
 
-// import { Button } from '@radui/radui/src'
-const Button = dynamic(() => import('@radui/radui').then((mod) => mod.Button), {
-	ssr: false
-})
+import { ButtonProps } from '@radui/radui'
+const Button = dynamic<ButtonProps>(
+	() => import('@radui/radui').then((mod) => mod.Button),
+	{
+		ssr: false
+	}
+)
 
 const IndexPage = () => {
 	return (

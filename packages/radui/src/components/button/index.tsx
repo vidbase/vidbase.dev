@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { Box, BoxProps } from '../box'
 
-interface ButtonProps extends BoxProps {}
+export interface ButtonProps extends BoxProps {}
 
 export const StyledButton = styled(Box)<ButtonProps>``
 
