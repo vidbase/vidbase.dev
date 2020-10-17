@@ -1,7 +1,7 @@
 {
-	"name": "@radui/radui",
+	"name": "@radui/core",
 	"version": "0.0.0",
-	"description": "Design System used across Vidbase products.",
+	"description": "Meta Design System used across Vidbase products.",
 	"keywords": [
 		"radui",
 		"rad ui",

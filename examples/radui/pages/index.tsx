@@ -1,9 +1,9 @@
 import React from 'react'
 import dynamic from 'next/dynamic'
 
-import { ButtonProps } from '@radui/radui'
+import { ButtonProps } from '@radui/core'
 const Button = dynamic<ButtonProps>(
-	() => import('@radui/radui').then((mod) => mod.Button),
+	() => import('@radui/core').then((mod) => mod.Button),
 	{
 		ssr: false
 	}
