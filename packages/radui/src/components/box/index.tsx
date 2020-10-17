@@ -39,6 +39,7 @@ const getFontSize = (props: BoxProps) => {
 }
 
 export const Box = styled.div<BoxProps>`
+	border-radius: var(--rounded-base);
 	font-size: ${(props) => getFontSize(props)};
 	height: ${(props) => getHeight(props)};
 	padding: ${(props) => props.p || '0 var(--p-base)'};

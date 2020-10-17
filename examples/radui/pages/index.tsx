@@ -13,6 +13,9 @@ const IndexPage = () => {
 	return (
 		<div>
 			Hello <Button>Primary</Button>
+			<Button secondary>Secondary</Button>
+			<Button tertiary>Tertiary</Button>
+			<Button xl>Extra Large</Button>
 		</div>
 	)
 }

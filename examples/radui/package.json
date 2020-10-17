@@ -8,9 +8,12 @@
 		"type-check": "tsc"
 	},
 	"dependencies": {
+		"@fullhuman/postcss-purgecss": "^3.0.0",
 		"@stitches/react": "^0.0.2",
 		"next": "^9.5.5",
 		"next-transpile-modules": "^4.1.0",
+		"postcss-flexbugs-fixes": "^4.2.1",
+		"postcss-preset-env": "^6.7.0",
 		"react": "^16.14.0",
 		"react-dom": "^16.14.0",
 		"sass": "^1.27.0",

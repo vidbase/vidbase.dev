@@ -3,32 +3,57 @@ import styled, { css } from 'styled-components'
 import type {} from 'styled-components/cssprop'
 import { Box, BoxProps } from '../box'
 
-export const BaseButtonStyles = css`
-	cursor: pointer;
-
-	border: 1px solid transparent;
-	outline: none;
-`
-/*	background-color: ${(props) =>
-		props.secondary === true
-			? 'var(--clr-secondary-bg)'
-			: 'var(--clr-primary-bg)'};
-	color: ${(props) =>
-		props.secondary === true
-			? 'var(--clr-secondary-fg)'
-			: 'var(--clr-primary-fg)'};*/
-
-export interface ButtonProps extends BoxProps {
-	secondary?: boolean
+export interface BaseButtonProps extends ButtonProps {
+	buttonType?: string
 }
 
-export const StyledButton = styled(Box)<ButtonProps>`
+export const BaseButtonStyles = css<BaseButtonProps>`
+	cursor: pointer;
+
+	border: ${({ buttonType }) => `1px solid var(--clr-${buttonType}-border)`};
+	outline: none;
+
+	background-color: ${({ buttonType }) => `var(--clr-${buttonType}-bg)`};
+	color: ${({ buttonType }) => `var(--clr-${buttonType}-fg)`};
+
+	&:hover {
+		background-color: ${({ buttonType }) =>
+			`var(--clr-${buttonType}-bg-hover)`};
+		color: ${({ buttonType }) => `var(--clr-${buttonType}-fg-hover)`};
+	}
+	&:active {
+		background-color: ${({ buttonType }) =>
+			`var(--clr-${buttonType}-bg-active)`};
+		box-shadow: ${({ buttonType }) => `var(--clr-${buttonType}-shadow-active)`};
+	}
+	&:focus {
+		border-color: ${({ buttonType }) =>
+			`var(--clr-${buttonType}-border-active)`};
+	}
+`
+
+export interface ButtonProps extends BoxProps {
+	primary?: boolean
+	secondary?: boolean
+	tertiary?: boolean
+}
+
+export const StyledButton = styled(Box)<BaseButtonProps>`
 	${BaseButtonStyles};
 `
 
 export const Button: React.FC<ButtonProps> = ({ children, ...props }) => {
+	let buttonType = 'primary'
+	if (props.primary !== true) {
+		if (props.secondary === true) {
+			buttonType = 'secondary'
+		}
+		if (props.tertiary === true) {
+			buttonType = 'tertiary'
+		}
+	}
 	return (
-		<StyledButton as="button" {...props}>
+		<StyledButton as="button" {...props} buttonType={buttonType}>
 			{children}
 		</StyledButton>
 	)

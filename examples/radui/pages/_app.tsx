@@ -1,5 +1,5 @@
-import '@radui/radui/src/reset.css'
-import '@radui/radui/src/styles.css'
+import '@radui/radui/css/reset.css'
+import '@radui/radui/css/styles.css'
 import '../public/theme.scss'
 
 export default function MyApp({
