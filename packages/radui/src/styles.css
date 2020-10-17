@@ -34,10 +34,12 @@
 	--leading-6xl: 7.529rem;
 
 	/* box/button/etc heights */
+	--height-xs: var(--leading-lg);
 	--height-sm: var(--leading-xl);
 	--height-base: var(--leading-2xl);
 	--height-lg: var(--leading-3xl);
 	--height-xl: var(--leading-4xl);
+	--scale-text-height: 0.45;
 
 	/* paddings */
 	--p-sm: var(--leading-xs);

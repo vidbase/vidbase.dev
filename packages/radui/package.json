@@ -27,7 +27,8 @@
 	"module": "dist/radui.modern.js",
 	"types": "dist/index.d.ts",
 	"files": [
-		"dist"
+		"dist",
+		"styles.css"
 	],
 	"engines": {
 		"node": ">=10"
@@ -36,6 +37,7 @@
 		"clean": "rm -rf dist",
 		"build": "yarn run clean && yarn run build:dist",
 		"build:dist": "microbundle build --jsx React.createElement --external react --format modern,cjs -o dist --tsconfig ./tsconfig.json -i src/index.tsx",
+		"watch": "microbundle watch --jsx React.createElement --external react --format modern,cjs -o dist --tsconfig ./tsconfig.json -i src/index.tsx",
 		"test": "jest -- src"
 	},
 	"bugs": {
