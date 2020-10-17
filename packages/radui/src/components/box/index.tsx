@@ -5,9 +5,8 @@ export interface BoxProps {
 	lg?: boolean
 	xl?: boolean
 	height?: string
+	style?: object
 	p?: string
-	before?: JSX.Element[]
-	after?: JSX.Element[]
 }
 
 const getHeight = (props: BoxProps) => {
@@ -25,6 +24,7 @@ const getHeight = (props: BoxProps) => {
 	}
 	return 'var(--height-sm)'
 }
+
 const getFontSize = (props: BoxProps) => {
 	if (props.sm) {
 		return 'calc(var(--height-xs)*var(--scale-text-height))'
@@ -43,15 +43,3 @@ export const Box = styled.div<BoxProps>`
 	height: ${(props) => getHeight(props)};
 	padding: ${(props) => props.p || '0 var(--p-base)'};
 `
-
-// export const Box: React.FC<BoxProps> = ({ children, ...props }) => {
-// 	let innerProps = {
-// 		as: props.as,
-// 		sm: props.sm,
-// 		lg: props.lg,
-// 		xl: props.xl,
-// 		height: props.height,
-// 		p: props.p
-// 	}
-// 	return <StyledBox {...innerProps}>{children}</StyledBox>
-// }

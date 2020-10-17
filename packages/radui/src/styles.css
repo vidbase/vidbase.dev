@@ -43,5 +43,11 @@
 
 	/* paddings */
 	--p-sm: var(--leading-xs);
-	--p-base: var(--leading-sm);
+	--p-base: var(--leading-base);
+
+	/* colors */
+	--clr-primary-bg: #4299e1;
+	--clr-primary-fg: #ffffff;
+	--clr-secondary-bg: #ebf8ff;
+	--clr-secondary-fg: #333333;
 }

@@ -12,7 +12,7 @@ const Button = dynamic<ButtonProps>(
 const IndexPage = () => {
 	return (
 		<div>
-			Hello <Button>Click</Button>
+			Hello <Button>Primary</Button>
 		</div>
 	)
 }

@@ -8,6 +8,7 @@
 		"type-check": "tsc"
 	},
 	"dependencies": {
+		"@stitches/react": "^0.0.2",
 		"next": "^9.5.5",
 		"next-transpile-modules": "^4.1.0",
 		"react": "^16.14.0",
