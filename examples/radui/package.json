@@ -12,7 +12,9 @@
 		"next-transpile-modules": "^4.1.0",
 		"react": "^16.14.0",
 		"react-dom": "^16.14.0",
-		"sass": "^1.27.0"
+		"sass": "^1.27.0",
+		"scss": "^0.2.4",
+		"tailwindcss": "^1.9.3"
 	},
 	"devDependencies": {
 		"@types/node": "^12.12.21",

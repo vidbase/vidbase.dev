@@ -1,6 +1,6 @@
 import '@radui/radui/src/reset.css'
 import '@radui/radui/src/styles.css'
-import '../public/theme.css'
+import '../public/theme.scss'
 
 export default function MyApp({
 	Component,

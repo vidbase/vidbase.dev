@@ -55,7 +55,6 @@
 		"@types/styled-components": "^5.1.4",
 		"classnames": "^2.2.6",
 		"styled-components": "^5.2.0",
-		"styled-media-query": "^2.1.2",
-		"twin.macro": "^1.10.0"
+		"styled-media-query": "^2.1.2"
 	}
 }
