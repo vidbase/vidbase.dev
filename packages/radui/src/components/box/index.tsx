@@ -5,21 +5,6 @@ export interface BoxProps {
 	lg?: boolean
 	xl?: boolean
 	height?: string
-	colorBase?: {
-		text?: string
-		background?: string
-		border?: string
-	}
-	colorHover?: {
-		text?: string
-		background?: string
-		border?: string
-	}
-	colorActive?: {
-		text?: string
-		background?: string
-		border?: string
-	}
 	p?: string
 	before?: JSX.Element[]
 	after?: JSX.Element[]
