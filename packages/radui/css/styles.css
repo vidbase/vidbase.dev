@@ -40,6 +40,7 @@
 	--height-lg: var(--leading-3xl);
 	--height-xl: var(--leading-4xl);
 	--scale-text-height: 0.45;
+	--toggle-aspect: 1.833;
 
 	/* paddings */
 	--p-sm: var(--leading-xs);
@@ -47,6 +48,10 @@
 
 	/* border radius */
 	--rounded-base: 0.25rem;
+
+	/* timings */ /* TODO: enable mq for prefers-reduced-motion */
+	--transition-duration: 0.23s;
+	--transition-easing: ease;
 
 	/* colors applied */
 	--clr-primary-bg: #5850ec;
