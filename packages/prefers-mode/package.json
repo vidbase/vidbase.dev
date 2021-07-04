@@ -1,6 +1,6 @@
 {
 	"name": "prefers-mode",
-	"version": "0.0.3",
+	"version": "0.0.4-alpha-01",
 	"description": "Detect & listen to preferences for prefers-color-scheme, prefers-reduced-motion, and prefers-contrast.",
 	"author": "Van Nguyen <thegoleffect@gmail.com>",
 	"homepage": "https://vidbase.dev/packages/prefers-mode",
@@ -10,7 +10,9 @@
 	"files": [
 		"dist"
 	],
-	"dependencies": {},
+	"dependencies": {
+		"@types/react": "^17.0.13"
+	},
 	"scripts": {
 		"build": "node ./esbuild.js && npm run types",
 		"types": "tsc"
