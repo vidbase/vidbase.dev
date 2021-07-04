@@ -23,4 +23,4 @@ const IndexPage = (props) => {
 export default IndexPage
 ```
 
-See [example](../../examples/prefers-mode)
+See [example](../../examples/prefers-mode) for a working next.js example.
