@@ -1,24 +1,12 @@
-declare const SCHEME_PREFS: {
-    UNSUPPORTED: number;
-    NO_PREFERENCE: number;
-    DARK: number;
-    LIGHT: number;
-};
-declare const MOTION_PREFS: {
-    UNSUPPORTED: number;
-    NO_PREFERENCE: number;
-    REDUCE: number;
-};
-declare const CONTRAST_PREFS: {
-    NO_PREFERENCE: number;
-    MORE: number;
-    LESS: number;
-};
-declare type IPrefersMode = {
+import React from 'react';
+import { SCHEME_PREFS, MOTION_PREFS, CONTRAST_PREFS } from './schemas';
+interface IPrefersProviderProps {
+}
+export declare const getDefaultPrefs: () => {
     colorScheme: number;
     reducedMotion: number;
     contrast: number;
 };
-declare const usePrefersMode: () => IPrefersMode;
-export default usePrefersMode;
-export { SCHEME_PREFS, MOTION_PREFS, CONTRAST_PREFS };
+declare const usePrefers: () => void;
+declare const PrefersProvider: React.FC<IPrefersProviderProps>;
+export { PrefersProvider, usePrefers, SCHEME_PREFS, MOTION_PREFS, CONTRAST_PREFS };

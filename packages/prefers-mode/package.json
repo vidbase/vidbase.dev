@@ -1,6 +1,6 @@
 {
 	"name": "prefers-mode",
-	"version": "0.0.4-alpha-01",
+	"version": "0.0.4-alpha-02",
 	"description": "Detect & listen to preferences for prefers-color-scheme, prefers-reduced-motion, and prefers-contrast.",
 	"author": "Van Nguyen <thegoleffect@gmail.com>",
 	"homepage": "https://vidbase.dev/packages/prefers-mode",
