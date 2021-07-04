@@ -1,0 +1,19 @@
+{
+	"compilerOptions": {
+		"target": "es6",
+		"module": "esnext",
+		"strict": true,
+		"moduleResolution": "node",
+		"lib": ["dom", "dom.iterable", "esnext"],
+		// Compilation related
+		"emitDeclarationOnly": true,
+		"declaration": true,
+		"skipLibCheck": true,
+		"isolatedModules": true,
+		"esModuleInterop": true,
+		"allowSyntheticDefaultImports": true,
+		"resolveJsonModule": true
+	},
+	"exclude": ["node_modules", "**/__tests__"],
+	"include": ["**/*.ts", "**/*.tsx"]
+}

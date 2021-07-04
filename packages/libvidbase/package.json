@@ -1,0 +1,33 @@
+{
+  "name": "libvidbase",
+  "version": "0.0.0",
+  "description": "An extensible, declarative audio-video processing, editing, and effects library.",
+  "author": "Van Nguyen <thegoleffect@gmail.com>",
+  "homepage": "https://github.com/vidbase/vidbase.dev",
+  "license": "MIT",
+  "main": "dist/libvidbase.min.js",
+	"types": "src/index.d.ts",
+	"files": [
+		"dist"
+	],
+  "scripts": {
+    "build": "node scripts/build.js && npm run types",
+    "types": "tsc",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vidbase/vidbase.dev.git"
+  },
+  "bugs": {
+    "url": "https://github.com/vidbase/vidbase.dev/issues"
+  },
+  "keywords": [
+    "video",
+    "audio",
+    "video-editing",
+    "video-editor",
+    "vfx",
+    "vidbase"
+  ]
+}
