@@ -1,4 +1,4 @@
-# Example for `prefers-mode`
+# Next.js example for `prefers-mode`
 
 ## Getting Started
 
