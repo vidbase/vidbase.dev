@@ -14,7 +14,7 @@
 		"@types/react": "^17.0.13"
 	},
 	"scripts": {
-		"build": "node ./esbuild.js && npm run types",
+		"build": "node ./scripts/build.js && npm run types",
 		"types": "tsc"
 	},
 	"peerDependencies": {
