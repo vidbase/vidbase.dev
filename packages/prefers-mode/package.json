@@ -6,7 +6,7 @@
 	"homepage": "https://vidbase.dev/packages/prefers-mode",
 	"license": "MIT",
 	"main": "dist/prefers-mode.min.js",
-	"types": "src/index.d.ts",
+	"types": "types/index.d.ts",
 	"files": [
 		"dist"
 	],

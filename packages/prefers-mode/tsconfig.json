@@ -1,6 +1,6 @@
 {
 	"compilerOptions": {
-		"outDir": "src",
+		"outDir": "types",
 		"target": "esnext",
 		"module": "esnext",
 		"lib": ["dom", "esnext"],
