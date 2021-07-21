@@ -1,4 +1,4 @@
-import React, { useState, useCallback, createContext, useContext, useEffect, useMemo } from 'react'
+import React, { useState, useCallback, createContext, useContext, useEffect } from 'react'
 
 import { PrefQueryData, PrefsProps } from '../prefs'
 import { BrowserSupports } from '../utils/browserSupports'
@@ -30,10 +30,8 @@ export const loadStoredTheme = (key: string | null) => {
 	if (!key || typeof window === 'undefined') {
 		return undefined
 	}
-	let output
 	try {
-		output = localStorage.getItem(key) || undefined
-		return output
+		return localStorage.getItem(key) || undefined
 	} finally {
 		return undefined
 	}
@@ -110,7 +108,7 @@ export const PrefersThemeProvider: React.FC<PrefersThemeProviderProps> = ({
 	resetValue = 'auto',
 	attributes = getDefaultAttributes(),
 	cacheKey = 'prefers-theme',
-	cacheEnabled = false
+	cacheEnabled = true
 }) => {
 	const [systemPrefs, setSystemPrefs] = useState(() => {
 		return getDefaultSystemPrefs({ ...prefs }, cacheKey, cacheEnabled)
@@ -228,7 +226,7 @@ export const PrefersThemeProvider: React.FC<PrefersThemeProviderProps> = ({
 			document.body.setAttribute(attributes[key], finalPrefs[key])
 
 			// save to localStorage
-			if (cacheEnabled === true) {
+			if (cacheEnabled === true && cacheKey) {
 				try {
 					localStorage.setItem(cacheKey, finalPrefs.theme)
 				} catch {
