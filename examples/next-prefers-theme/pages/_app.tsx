@@ -1,11 +1,11 @@
 import { AppProps } from 'next/app'
-import { PrefersProvider } from 'prefers-mode'
+import { PrefersThemeProvider } from 'next-prefers-theme'
 
 function MyApp({ Component, pageProps }: AppProps) {
 	return (
-		<PrefersProvider>
+		<PrefersThemeProvider themes={['light', 'dark', '']}>
 			<Component {...pageProps} />
-		</PrefersProvider>
+		</PrefersThemeProvider>
 	)
 }
 
