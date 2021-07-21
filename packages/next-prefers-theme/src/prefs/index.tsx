@@ -1,13 +1,19 @@
-const AVAILABLE_PREFS = {
+const AVAILABLE_PREFS = Object.freeze({
 	theme: {
+		_default: 'light',
+		attribute: 'data-theme',
 		query: '(prefers-color-scheme: dark)',
 		set: (isMatched: boolean) => (isMatched === true ? 'dark' : 'light')
 	},
 	motion: {
+		_default: 'no-preference',
+		attribute: 'data-reduced-motion',
 		query: '(prefers-reduced-motion: reduce)',
 		set: (isMatched: boolean) => (isMatched === true ? 'reduce' : 'no-preference')
 	},
 	contrast: {
+		_default: 'no-preference',
+		attribute: 'data-contrast',
 		query: '(prefers-contrast: more)',
 		set: (isMatched: boolean) => {
 			if (isMatched === true) {
@@ -21,10 +27,12 @@ const AVAILABLE_PREFS = {
 		}
 	},
 	data: {
+		_default: 'no-preference',
+		attribute: 'data-reduced-data',
 		query: '(prefers-reduced-data: reduce)',
 		set: (isMatched: boolean) => (isMatched === true ? 'reduce' : 'no-preference')
 	}
-}
+})
 
 export interface PrefsProps {
 	theme?: string | null
@@ -32,6 +40,27 @@ export interface PrefsProps {
 	contrast?: string | null
 	data?: string | null
 }
+
+export const DEFAULT_PREFS: PrefsProps = Object.freeze(
+	Object.keys(AVAILABLE_PREFS).reduce((obj, key) => {
+		obj[key] = AVAILABLE_PREFS[key]._default
+		return obj
+	}, {})
+)
+
+export const DEFAULT_ATTRIBUTES: PrefsProps = Object.freeze(
+	Object.keys(AVAILABLE_PREFS).reduce((obj, key) => {
+		obj[key] = AVAILABLE_PREFS[key].attribute
+		return obj
+	}, {})
+)
+
+export const NULL_PREFS: PrefsProps = Object.freeze(
+	Object.keys(AVAILABLE_PREFS).reduce((obj, key) => {
+		obj[key] = null
+		return obj
+	}, {})
+)
 
 export const PrefQueryData = (
 	prefs: PrefsProps,
@@ -51,6 +80,5 @@ export const PrefQueryData = (
 			}
 		}
 	})
-	console.log({ output })
 	return output
 }

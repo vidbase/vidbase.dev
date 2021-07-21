@@ -1,14 +1,15 @@
 {
 	"name": "next-prefers-theme",
-	"version": "0.0.0",
-	"description": "Next.js css prefers-* & theming with system preference.",
+	"version": "0.0.0-alpha1",
+	"description": "Next.js css media query prefers-* system preference detection & theming.",
 	"license": "MIT",
 	"author": "Van Nguyen <thegoleffect@gmail.com>",
 	"main": "./dist/index.umd.js",
 	"module": "./dist/index.es.js",
 	"types": "./@types/index.d.ts",
 	"files": [
-		"dist"
+		"dist",
+		"@types"
 	],
 	"scripts": {
 		"dev": "vite",
@@ -42,7 +43,10 @@
 		"themes",
 		"theming",
 		"dark-theme",
-		"light-theme"
+		"light-theme",
+		"reduced-motion",
+		"high-contrast",
+		"reduced-data"
 	],
 	"homepage": "https://github.com/vidbase/vidbase.dev",
 	"repository": {

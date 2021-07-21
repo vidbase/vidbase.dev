@@ -1,6 +1,6 @@
 import React, { useState, useCallback, createContext, useContext, useEffect } from 'react'
 
-import { PrefQueryData, PrefsProps } from '../prefs'
+import { PrefQueryData, PrefsProps, DEFAULT_PREFS, DEFAULT_ATTRIBUTES, NULL_PREFS } from '../prefs'
 import { BrowserSupports } from '../utils/browserSupports'
 
 export interface PrefersThemeProviderProps {
@@ -26,58 +26,58 @@ export interface PrefersThemeProviderProps {
 	}
 }
 
-export const loadStoredTheme = (key: string | null) => {
+export const getStoredPrefs = (key: string | null) => {
 	if (!key || typeof window === 'undefined') {
 		return undefined
 	}
 	try {
-		return localStorage.getItem(key) || undefined
-	} finally {
+		const value = localStorage.getItem(key) || undefined
+		if (value) {
+			return JSON.parse(value)
+		}
+	} catch {
 		return undefined
 	}
 }
 
-export const getDefaultSystemPrefs = (
-	props: PrefsProps,
-	cacheKey: string | null,
-	cacheEnabled = false
-) => {
-	return {
-		theme: props.theme || (cacheEnabled && loadStoredTheme(cacheKey)) || 'light',
-		motion: props.motion || 'no-preference',
-		contrast: props.contrast || 'no-preference',
-		data: props.data || 'no-preference'
+export const setStoredPrefs = (key: string | null, prefs: PrefsProps) => {
+	if (!key || typeof window === 'undefined') {
+		return
+	}
+	try {
+		localStorage.setItem(key, JSON.stringify(prefs))
+	} finally {
+		return
 	}
 }
 
-export const getDefaultOverridePrefs = () => {
-	return {
-		theme: null,
-		motion: null,
-		contrast: null,
-		data: null
+export const getDefaultOverridePrefs = (cacheKey: string, cacheEnabled = false) => {
+	if (cacheEnabled) {
+		const data = getStoredPrefs(cacheKey)
+		if (data) {
+			return data
+		}
 	}
-}
-
-export const getDefaultAttributes = () => {
-	return {
-		theme: 'data-theme',
-		motion: 'data-reduced-motion',
-		contrast: 'data-contrast',
-		data: 'data-reduced-data'
-	}
+	return Object.keys(DEFAULT_PREFS).reduce((obj, key) => {
+		obj[key] = null
+		return obj
+	}, {})
 }
 
 export interface PrefersThemeContextProps {
 	prefs: PrefsProps
+	userPrefs: PrefsProps
 	setPrefs: Function
 	themes: string[]
+	resetStorage: Function
 }
 
 export const PrefersThemeContext = createContext<PrefersThemeContextProps>({
-	prefs: getDefaultSystemPrefs({}, null),
+	prefs: { ...DEFAULT_PREFS },
+	userPrefs: { ...NULL_PREFS },
 	themes: [],
-	setPrefs: () => {}
+	setPrefs: () => {},
+	resetStorage: () => {}
 })
 
 export const usePrefersTheme = () => {
@@ -101,19 +101,19 @@ export const setPrefsFactory = (
 
 export const PrefersThemeProvider: React.FC<PrefersThemeProviderProps> = ({
 	children,
-	prefs = getDefaultOverridePrefs(),
+	prefs = { ...NULL_PREFS },
 	themes = ['light', 'dark'],
 	enforceThemes = true,
 	disabledPrefs = [],
 	resetValue = 'auto',
-	attributes = getDefaultAttributes(),
+	attributes = { ...DEFAULT_ATTRIBUTES },
 	cacheKey = 'prefers-theme',
 	cacheEnabled = true
 }) => {
-	const [systemPrefs, setSystemPrefs] = useState(() => {
-		return getDefaultSystemPrefs({ ...prefs }, cacheKey, cacheEnabled)
-	})
-	const [overridePrefs, setOverridePrefs] = useState(getDefaultOverridePrefs())
+	const [systemPrefs, setSystemPrefs] = useState({ ...DEFAULT_PREFS })
+	const [overridePrefs, setOverridePrefs] = useState(
+		getDefaultOverridePrefs(cacheKey, cacheEnabled)
+	)
 
 	// Expose indirect set method to the context
 	// otherwise, setPrefs({theme: 'light'}) would delete other prefs
@@ -124,10 +124,27 @@ export const PrefersThemeProvider: React.FC<PrefersThemeProviderProps> = ({
 					throw `"${newPrefs.theme} is not in the list of supported themes (${themes})`
 				}
 			}
-			setOverridePrefs({ ...overridePrefs, ...newPrefs })
+
+			const prefsToUpdate = { ...overridePrefs, ...newPrefs }
+			setOverridePrefs(prefsToUpdate)
+
+			// save to localStorage
+			if (cacheEnabled === true && cacheKey) {
+				setStoredPrefs(cacheKey, prefsToUpdate)
+			}
 		},
 		[overridePrefs]
 	)
+
+	const resetStorage = useCallback(() => {
+		if (cacheKey) {
+			try {
+				localStorage.removeItem(cacheKey)
+			} catch {
+				// do nothing
+			}
+		}
+	}, [cacheKey])
 
 	const setSystemPrefsPublic = useCallback(
 		(newPrefs: any) => {
@@ -154,7 +171,7 @@ export const PrefersThemeProvider: React.FC<PrefersThemeProviderProps> = ({
 					queries[key] = window.matchMedia(QueryData[key].query)
 
 					// Initialize systemPrefs based on Media Query result
-					if (QueryData[key].set) {
+					if (isInitial && QueryData[key].set) {
 						initialSystemPrefs[key] = QueryData[key].set(queries[key].matches)
 					}
 
@@ -223,16 +240,18 @@ export const PrefersThemeProvider: React.FC<PrefersThemeProviderProps> = ({
 
 		Object.keys(finalPrefs).forEach((key) => {
 			// update body classes
-			document.body.setAttribute(attributes[key], finalPrefs[key])
-
-			// save to localStorage
-			if (cacheEnabled === true && cacheKey) {
-				try {
-					localStorage.setItem(cacheKey, finalPrefs.theme)
-				} catch {
-					// do nothing
-				}
+			if (attributes[key]) {
+				document.body.setAttribute(attributes[key] as string, finalPrefs[key])
 			}
+
+			// // save to localStorage
+			// if (cacheEnabled === true && cacheKey) {
+			// 	try {
+			// 		localStorage.setItem(cacheKey, JSON.stringify(finalPrefs))
+			// 	} catch {
+			// 		// do nothing
+			// 	}
+			// }
 		})
 
 		return finalPrefs
@@ -240,7 +259,13 @@ export const PrefersThemeProvider: React.FC<PrefersThemeProviderProps> = ({
 
 	return (
 		<PrefersThemeContext.Provider
-			value={{ prefs: determinePrefs(), setPrefs: setOverridePrefsPublic, themes }}>
+			value={{
+				prefs: determinePrefs(),
+				userPrefs: overridePrefs,
+				setPrefs: setOverridePrefsPublic,
+				themes,
+				resetStorage
+			}}>
 			{children}
 		</PrefersThemeContext.Provider>
 	)

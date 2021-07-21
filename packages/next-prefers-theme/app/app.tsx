@@ -2,27 +2,66 @@ import React, { useEffect } from 'react'
 import { usePrefersTheme } from '../src'
 
 function App(props) {
-	const { prefs, setPrefs } = usePrefersTheme()
+	const { prefs, userPrefs, setPrefs, resetStorage } = usePrefersTheme()
 
 	return (
 		<div>
 			<h1>Hello there.</h1>
-			<p>{`Current theme: ${prefs.theme}`}</p>
-			<p>{`Current motion: ${prefs.motion}`}</p>
-			<p>{`Current contrast: ${prefs.contrast}`}</p>
-			<p>{`Current data: ${prefs.data}`}</p>
-			<button
-				onClick={() => {
-					setPrefs({ theme: prefs.theme == 'dark' ? 'light' : 'dark' })
-				}}>
-				Toggle Theme
-			</button>
-			<button
-				onClick={() => {
-					setPrefs({ theme: 'auto' })
-				}}>
-				Reset Theme to System Preference
-			</button>
+			<p>
+				<button
+					onClick={() => {
+						setPrefs({ theme: prefs.theme == 'dark' ? 'light' : 'dark' })
+					}}>
+					Toggle Theme
+				</button>
+				&nbsp;
+				{`Current theme: ${userPrefs.theme} (system: ${prefs.theme})`}
+			</p>
+			<p>
+				<button
+					onClick={() => {
+						setPrefs({ motion: prefs.motion == 'reduce' ? 'no-preference' : 'reduce' })
+					}}>
+					Toggle Reduced Motion
+				</button>
+				&nbsp;
+				{`Current reduced-motion: ${userPrefs.motion} (system: ${prefs.motion})`}
+			</p>
+			<p>
+				<button
+					onClick={() => {
+						setPrefs({ contrast: prefs.contrast == 'more' ? 'no-preference' : 'more' })
+					}}>
+					Toggle Contrast
+				</button>
+				&nbsp;
+				{`Current contrast: ${userPrefs.contrast} (system: ${prefs.contrast})`}
+			</p>
+			<p>
+				<button
+					onClick={() => {
+						setPrefs({ data: prefs.data == 'reduce' ? 'no-preference' : 'reduce' })
+					}}>
+					Toggle Reduced Data
+				</button>
+				&nbsp;{`Current reduced-data: ${userPrefs.data} (system: ${prefs.data})`}
+			</p>
+			<p>
+				<button
+					onClick={() => {
+						setPrefs({ theme: 'auto', motion: 'auto', contrast: 'auto', data: 'auto' })
+					}}>
+					Reset All to System Preference
+				</button>
+			</p>
+			<p>
+				<button
+					onClick={() => {
+						resetStorage()
+					}}>
+					Reset localStorage Cache
+				</button>
+			</p>
 		</div>
 	)
 }
