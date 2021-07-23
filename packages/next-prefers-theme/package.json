@@ -1,6 +1,6 @@
 {
 	"name": "next-prefers-theme",
-	"version": "0.0.0-alpha1",
+	"version": "0.0.0-alpha2",
 	"description": "Next.js css media query prefers-* system preference detection & theming.",
 	"license": "MIT",
 	"author": "Van Nguyen <thegoleffect@gmail.com>",
