@@ -4,8 +4,14 @@
 	"description": "Next.js css media query prefers-* system preference detection & theming.",
 	"license": "MIT",
 	"author": "Van Nguyen <thegoleffect@gmail.com>",
-	"main": "./dist/index.umd.js",
-	"module": "./dist/index.es.js",
+	"main": "./dist/next-prefers-theme.umd.js",
+	"module": "./dist/next-prefers-theme.es.js",
+	"exports": {
+		".": {
+			"import": "./dist/next-prefers-theme.es.js",
+			"required": "./dist/next-prefers-theme.umd.js"
+		}
+	},
 	"types": "./@types/index.d.ts",
 	"files": [
 		"dist",
@@ -21,7 +27,6 @@
 		"types:watch": "tsc --watch",
 		"watch": "concurrently \"$npm_execpath run build:watch\" \"$npm_execpath run types:watch\""
 	},
-	"dependencies": {},
 	"peerDependencies": {
 		"next": "*",
 		"react": "*",
@@ -56,5 +61,8 @@
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/vidbase/vidbase.dev.git"
+	},
+	"dependencies": {
+		"vite-react-jsx": "^1.1.2"
 	}
 }

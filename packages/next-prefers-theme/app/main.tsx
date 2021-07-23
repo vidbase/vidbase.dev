@@ -13,7 +13,6 @@ function _App({ Component, pageProps }) {
 	)
 }
 
-ReactDOM.render(
-	<_App Component={App} pageProps={{}} />,
-	document.getElementById('root')
-)
+if (typeof document !== 'undefined') {
+	ReactDOM.render(<_App Component={App} pageProps={{}} />, document.getElementById('root'))
+}

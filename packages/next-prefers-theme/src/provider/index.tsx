@@ -240,18 +240,9 @@ export const PrefersThemeProvider: React.FC<PrefersThemeProviderProps> = ({
 
 		Object.keys(finalPrefs).forEach((key) => {
 			// update body classes
-			if (attributes[key]) {
+			if (typeof document !== 'undefined' && attributes[key]) {
 				document.body.setAttribute(attributes[key] as string, finalPrefs[key])
 			}
-
-			// // save to localStorage
-			// if (cacheEnabled === true && cacheKey) {
-			// 	try {
-			// 		localStorage.setItem(cacheKey, JSON.stringify(finalPrefs))
-			// 	} catch {
-			// 		// do nothing
-			// 	}
-			// }
 		})
 
 		return finalPrefs
