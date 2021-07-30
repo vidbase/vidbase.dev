@@ -38,6 +38,18 @@ function TestSetPrefs(props:any) {
 	}
 }
 
+function TestResetStorage() {
+	const { setPrefs, resetStorage } = usePrefersTheme()
+	useEffect(() => {
+		setPrefs({theme:'dark'})
+		resetStorage()},
+		[]
+	)
+	return <div>
+			{`After reset, value from local storage=${localStorage.getItem('prefers-theme')}`}
+		</div>
+}
+
 describe('PrefersThemeProvider', () => {
 	beforeAll(() => {
 		Object.defineProperty(window, 'matchMedia', {
@@ -85,8 +97,10 @@ describe('PrefersThemeProvider', () => {
 		expect(getByText('Hello theme=dark (system: null)')).toBeInTheDocument()
 		done()
 	})
+})
 
-	it('use setPrefs to set theme=dark', (done) => {
+describe('usePrefersTheme', () => {
+	it('should change theme to \'dark\'', (done) => {
 		const { getByText } = render(
 			<PrefersThemeProvider>
 				<TestSetPrefs theme='dark'/>
@@ -96,7 +110,7 @@ describe('PrefersThemeProvider', () => {
 		done()
 	})
 
-	it('use setPrefs to set theme=light', (done) => {
+	it('should change theme to \'light\'', (done) => {
 		const { getByText } = render(
 			<PrefersThemeProvider>
 				<TestSetPrefs theme='light'/>
@@ -106,7 +120,7 @@ describe('PrefersThemeProvider', () => {
 		done()
 	})
 
-	it('use setPrefs to set contrast=more', (done) => {
+	it('should change contrast to \'more\'', (done) => {
 		const { getByText } = render(
 			<PrefersThemeProvider>
 				<TestSetPrefs contrast='more'/>
@@ -116,7 +130,7 @@ describe('PrefersThemeProvider', () => {
 		done()
 	})
 
-	it('use setPrefs to set contrast=less', (done) => {
+	it('should change contrast to \'less\'', (done) => {
 		const { getByText } = render(
 			<PrefersThemeProvider>
 				<TestSetPrefs contrast='less'/>
@@ -126,7 +140,7 @@ describe('PrefersThemeProvider', () => {
 		done()
 	})
 
-	it('use setPrefs to set motion=reduce', (done) => {
+	it('should change motion to \'reduce\'', (done) => {
 		const { getByText } = render(
 			<PrefersThemeProvider>
 				<TestSetPrefs motion='reduce'/>
@@ -136,7 +150,7 @@ describe('PrefersThemeProvider', () => {
 		done()
 	})
 
-	it('use setPrefs to set data=reduce', (done) => {
+	it('should change data to \'reduce\'', (done) => {
 		const { getByText } = render(
 			<PrefersThemeProvider>
 				<TestSetPrefs data='reduce'/>
@@ -155,6 +169,16 @@ describe('PrefersThemeProvider', () => {
 			</PrefersThemeProvider>
 		)).toThrow()
 		spy.mockRestore();
+		done()
+	})
+
+	it('should delete local storage element', (done) => {
+		const { getByText } = render(
+			<PrefersThemeProvider>
+				<TestResetStorage/>
+			</PrefersThemeProvider>
+		)
+		expect(getByText('After reset, value from local storage=null')).toBeInTheDocument()
 		done()
 	})
 })
